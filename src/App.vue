@@ -1,27 +1,33 @@
 <template>
   <div id="app">
-    <Icon type="home"></Icon>
+    <pager :total="total" :current="current" @pageChange="handlePageChange"></pager>
   </div>
 </template>
 
 <script>
 
-import Icon from "@/components/Icon";
+import Pager from "@/components/Pager";
 
 export default {
   name: 'App',
   components: {
-    Icon
+    Pager,
+  },
+  data() {
+    return {
+      current: 2,
+      total: 200,
+    }
+  },
+  methods: {
+    handlePageChange(index) {
+      this.current = index
+    }
   },
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
