@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <avatar></avatar>
+    <Icon type="home"></Icon>
   </div>
 </template>
 
 <script>
 
-import Avatar from "@/components/Avatar";
+import Icon from "@/components/Icon";
 
 export default {
   name: 'App',
-  components: {Avatar},
+  components: {
+    Icon
+  },
 }
 </script>
 
@@ -19,7 +21,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
