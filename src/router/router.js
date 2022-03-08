@@ -13,6 +13,7 @@ const router = new VueRouter({
         {name: 'Project', path: '/project', component: Project},
         {name: 'Blog', path: '/blog', component: Blog},
     ],
+    mode: 'hash',
 })
 
 export default router
