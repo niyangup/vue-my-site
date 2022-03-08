@@ -1,5 +1,5 @@
 <template>
-  <img :src="url" alt="" :style="{width:100+'px',height:100+'px'}" class="avatar">
+  <img :src="url" alt="" :style="{width:size+'px',height:size+'px'}" class="avatar">
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
     },
     size: {
       type: Number,
-      default: 100
+      default: 150
     }
   },
 }

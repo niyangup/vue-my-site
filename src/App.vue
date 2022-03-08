@@ -1,33 +1,51 @@
 <template>
-  <div id="app">
-    <div class="container">
-      <Contact/>
-    </div>
+  <div class="app-container">
+    <Layout>
+
+      <template v-slot:left>
+        <div class="aside">
+          <site-aside></site-aside>
+        </div>
+      </template>
+
+      <div class="main">
+        中间区域
+      </div>
+    </Layout>
   </div>
 </template>
 
 <script>
 
 
-import Contact from "@/components/Contact";
+import Layout from "@/components/Layout";
+import SiteAside from "@/components/SiteAside/SiteAside";
 
 export default {
   name: 'App',
-  components: {
-    Contact
-  },
+  components: {SiteAside, Layout},
 }
 </script>
 
-<style>
-#app {
-}
+<style scoped lang="less">
 
-.container {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  border: 3px solid #dedede;
-  background: #202020;
+.app-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: pink;
+
+  .aside {
+    width: 250px;
+    height: 100%;
+  }
+
+  .main {
+    width: 100%;
+    height: 100%;
+    background: lightblue;
+  }
 }
 </style>

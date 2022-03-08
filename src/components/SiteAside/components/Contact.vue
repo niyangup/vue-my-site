@@ -66,7 +66,6 @@ export default {
   width: 100%;
   list-style: none;
   padding: 20px;
-  margin: 0;
   margin-top: 100px;
 
   @itemHeight: 30px;
@@ -89,6 +88,10 @@ export default {
       font-size: 26px;
       color: @gray;
       cursor: pointer;
+
+      span {
+        font-size: 16px;
+      }
 
       .icon {
         width: 36px;
