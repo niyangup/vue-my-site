@@ -11,6 +11,39 @@
         <img src="https://img0.baidu.com/it/u=4010987200,1545408762&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" alt="">
       </div>
     </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <icon type="qq"/>
+        </div>
+        <span>niyangup</span>
+      </a>
+      <div class="pop">
+        <img src="https://img0.baidu.com/it/u=4010987200,1545408762&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" alt="">
+      </div>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <icon type="mail"/>
+        </div>
+        <span>niyangup</span>
+      </a>
+      <div class="pop">
+        <img src="https://img0.baidu.com/it/u=4010987200,1545408762&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" alt="">
+      </div>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <icon type="weixin"/>
+        </div>
+        <span>niyangup</span>
+      </a>
+      <div class="pop">
+        <img src="https://img0.baidu.com/it/u=4010987200,1545408762&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" alt="">
+      </div>
+    </li>
 
   </ul>
 </template>
@@ -43,8 +76,9 @@ export default {
     height: @itemHeight;
     line-height: @itemHeight;
     margin: 14px 0;
-    &:hover{
-      .pop{
+
+    &:hover {
+      .pop {
         transform: scaleY(1);
       }
     }
