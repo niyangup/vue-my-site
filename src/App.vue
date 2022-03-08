@@ -1,28 +1,20 @@
 <template>
   <div id="app">
     <div class="container">
-      <ImageLoader
-          src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?fit=crop&crop=entropy&w=3456&h=2304"
-          placeholder="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?w=100"
-          @loaded="handleLoaded"
-      />
+      <Contact/>
     </div>
   </div>
 </template>
 
 <script>
 
-import ImageLoader from "@/components/ImageLoader";
+
+import Contact from "@/components/Contact";
 
 export default {
   name: 'App',
   components: {
-    ImageLoader
-  },
-  methods: {
-    handleLoaded() {
-      console.log(123)
-    }
+    Contact
   },
 }
 </script>
@@ -36,5 +28,6 @@ export default {
   width: 300px;
   height: 300px;
   border: 3px solid #dedede;
+  background: #202020;
 }
 </style>
