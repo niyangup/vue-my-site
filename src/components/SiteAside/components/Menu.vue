@@ -1,11 +1,15 @@
 <template>
   <nav class="menu-container">
-    <a :href="item.link" :class="{selected:isSelect(item.link,item.startWith)}" v-for="item in items" :key="item.link">
+    <router-link
+        class="link"
+        :to="{name:item.name}"
+        :exact="item.exact"
+        v-for="item in items" :key="item.name">
       <div class="icon">
         <icon :type="item.icon"/>
       </div>
       <span>{{ item.title }}</span>
-    </a>
+    </router-link>
   </nav>
 
 </template>
@@ -20,46 +24,39 @@ export default {
     return {
       items: [
         {
-          link: '/',
+          name: 'Home',
           title: '首页',
           icon: 'home',
+          exact: true,
         },
         {
-          link: '/blog',
+          name: 'Blog',
           title: '文章',
           icon: 'blog',
-          startWith: true
+          exact: false,
         },
         {
-          link: '/about',
+          name: 'About',
           title: '关于',
           icon: 'about',
+          exact: true,
         },
         {
-          link: '/project',
+          name: 'Project',
           title: '项目&效果',
           icon: 'code',
+          exact: true,
         },
         {
-          link: '/message',
+          name: 'Message',
           title: '留言板',
           icon: 'chat',
+          exact: true,
         },
 
       ],
     }
   },
-
-  methods: {
-    isSelect(path, startWith = false) {
-      if (startWith) {
-        return location.pathname.toLowerCase().startsWith(path.toLowerCase())
-      } else {
-        return location.pathname.toLowerCase() === path.toLowerCase()
-      }
-    }
-  },
-
 }
 </script>
 
@@ -70,14 +67,14 @@ export default {
   color: @gray;
   margin: 24px 0;
 
-  a {
+  .link {
     padding: 0 50px;
     display: flex;
     align-items: center;
     height: 45px;
     transition: all 500ms;
 
-    &.selected {
+    &.router-link-active {
       background: darken(@words, 1%);
     }
 
