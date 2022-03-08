@@ -1,32 +1,27 @@
 <template>
   <div id="app">
-    <pager :total="total" :current="current" @pageChange="handlePageChange"></pager>
     <div class="container">
-      <empty/>
+      <ImageLoader
+          src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?fit=crop&crop=entropy&w=3456&h=2304"
+          placeholder="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?w=100"
+          @loaded="handleLoaded"
+      />
     </div>
   </div>
 </template>
 
 <script>
 
-import Pager from "@/components/Pager";
-import Empty from "@/components/Empty";
+import ImageLoader from "@/components/ImageLoader";
 
 export default {
   name: 'App',
   components: {
-    Empty,
-    Pager,
-  },
-  data() {
-    return {
-      current: 2,
-      total: 200,
-    }
+    ImageLoader
   },
   methods: {
-    handlePageChange(index) {
-      this.current = index
+    handleLoaded() {
+      console.log(123)
     }
   },
 }
