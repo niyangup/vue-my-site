@@ -1,10 +1,9 @@
 <template>
-  <div class="home-container">
+  <div class="home-container" @wheel="handleWheel">
 
-    <ul class="carousel" ref="carousel" :style="{marginTop}">
+    <ul class="carousel" ref="carousel" :style="{marginTop}" @transitionend="handleEnd">
       <li v-for="item in banners" :key="item.id">
-        <carousel-item></carousel-item>
-        <div>{{ item.id }}</div>
+        <carousel-item :carousel="item"></carousel-item>
       </li>
     </ul>
 
@@ -37,14 +36,18 @@ export default {
       banners: [],
       index: 0,
       carouselHeight: null,
+      switching: false,
     }
   },
   async created() {
     this.banners = await getBanner()
   },
   mounted() {
-    this.carouselHeight = this.$refs.carousel.clientHeight
-    console.log(this.carouselHeight)
+    this.handleResize()
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize)
   },
   computed: {
     marginTop() {
@@ -52,11 +55,38 @@ export default {
     }
   },
   methods: {
+    handleResize() {
+      this.carouselHeight = this.$refs.carousel.clientHeight
+    },
     switchIndex(i) {
       if (this.index === i) {
         return;
       }
       this.index = i
+    },
+    handleWheel(e) {
+      if (this.switching) {
+        return
+      }
+      if (e.deltaY > 5) {
+        if (this.index >= this.banners.length - 1) {
+          this.index = this.banners.length - 1
+        } else {
+          this.index++
+          this.switching = true
+        }
+      } else if (e.deltaY < -5) {
+        console.log('翻动 上')
+        if (this.index > 0) {
+          this.index--
+          this.switching = true
+        } else {
+          this.index = 0
+        }
+      }
+    },
+    handleEnd() {
+      this.switching = false
     }
   },
 }
@@ -74,6 +104,7 @@ export default {
   .carousel {
     width: 100%;
     height: 100%;
+    transition: 500ms;
 
     li {
       width: 100%;
