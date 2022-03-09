@@ -5,14 +5,11 @@ import VueRouter from "vue-router";
 import router from "@/router/router";
 import showMessage from "@/utils/showMessage";
 import './mock'
-import {getBanner} from "@/api/banner";
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 
 Vue.prototype.$showMessage = showMessage
-
-getBanner()
 
 new Vue({
     router,
