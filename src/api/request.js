@@ -9,8 +9,8 @@ instance.interceptors.response.use(response => {
             content: response.data.msg,
             type: 'error',
         })
+        return null
     }
-
     return response.data.data
 }, error => {
     return error
