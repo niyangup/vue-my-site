@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container" @wheel="handleWheel">
+  <div class="home-container" @wheel="handleWheel" v-loading="loading">
 
     <ul class="carousel" ref="carousel" :style="{marginTop}" @transitionend="handleEnd">
       <li v-for="item in banners" :key="item.id">
@@ -33,6 +33,7 @@ export default {
   components: {Icon, CarouselItem},
   data() {
     return {
+      loading: true,
       banners: [],
       index: 0,
       carouselHeight: null,
@@ -41,6 +42,7 @@ export default {
   },
   async created() {
     this.banners = await getBanner()
+    this.loading = false
   },
   mounted() {
     this.handleResize()
