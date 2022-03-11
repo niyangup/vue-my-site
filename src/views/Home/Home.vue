@@ -2,7 +2,7 @@
   <div class="home-container" @wheel="handleWheel" v-loading="loading">
 
     <ul class="carousel" ref="carousel" :style="{marginTop}" @transitionend="handleEnd">
-      <li v-for="item in banners" :key="item.id">
+      <li v-for="item in data" :key="item.id">
         <carousel-item :carousel="item"></carousel-item>
       </li>
     </ul>
@@ -10,12 +10,12 @@
     <div class="icon icon-up" v-show="index>0" @click="switchIndex(index-1)">
       <icon type="arrowUp"></icon>
     </div>
-    <div class="icon icon-down" v-show="index<banners.length-1" @click="switchIndex(index+1)">
+    <div class="icon icon-down" v-show="index<data.length-1" @click="switchIndex(index+1)">
       <icon type="arrowDown"></icon>
     </div>
 
     <ul class="indicator">
-      <li :class="{active: index===i}" v-for="(item,i) in banners" :key="item.id" @click="switchIndex(i)">
+      <li :class="{active: index===i}" v-for="(item,i) in data" :key="item.id" @click="switchIndex(i)">
       </li>
     </ul>
 
@@ -27,22 +27,18 @@
 import {getBanner} from "@/api/banner";
 import CarouselItem from "@/views/Home/CarouselItem";
 import Icon from "@/components/Icon";
+import fetchData from "@/mixins/fetchData";
 
 export default {
   name: "Home",
+  mixins: [fetchData([])],
   components: {Icon, CarouselItem},
   data() {
     return {
-      loading: true,
-      banners: [],
       index: 0,
       carouselHeight: null,
       switching: false,
     }
-  },
-  async created() {
-    this.banners = await getBanner()
-    this.loading = false
   },
   mounted() {
     this.handleResize()
@@ -57,6 +53,9 @@ export default {
     }
   },
   methods: {
+    fetchData() {
+      return getBanner()
+    },
     handleResize() {
       this.carouselHeight = this.$refs.carousel.clientHeight
     },
@@ -71,8 +70,8 @@ export default {
         return
       }
       if (e.deltaY > 5) {
-        if (this.index >= this.banners.length - 1) {
-          this.index = this.banners.length - 1
+        if (this.index >= this.data.length - 1) {
+          this.index = this.data.length - 1
         } else {
           this.index++
           this.switching = true
