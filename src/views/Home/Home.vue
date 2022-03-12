@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container" @wheel="handleWheel" v-loading="loading">
+  <div class="home-container" @wheel="handleWheel" v-loading="isLoading">
 
     <ul class="carousel" ref="carousel" :style="{marginTop}" @transitionend="handleEnd">
       <li v-for="item in data" :key="item.id">
