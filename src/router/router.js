@@ -11,7 +11,8 @@ const router = new VueRouter({
         {name: 'About', path: '/about', component: About},
         {name: 'Message', path: '/message', component: Message},
         {name: 'Project', path: '/project', component: Project},
-        {name: 'Blog', path: '/blog', component: Blog},
+        {name: 'Blog', path: '/article', component: Blog},
+        {name: 'CategoryBlog', path: '/article/cate/:id', component: Blog},
     ],
     mode: 'hash',
 })

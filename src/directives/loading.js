@@ -30,6 +30,8 @@ function handleLoading(el, flag) {
             el.appendChild(img)
         }
     } else {
-        currentImg.remove()
+        if (currentImg) {
+            currentImg.remove()
+        }
     }
 }

@@ -4,6 +4,7 @@
     <ul>
       <li v-for="(item,i) in list " :key="i" @click="handleClick(item)">
         <span :class="{active:item.isSelect}">{{ item.name }}</span>
+        <span :class="{active:item.isSelect}" v-if="item.aside"> {{ item.aside }} </span>
         <ExpandList :list="item.children" @select="handleClick(item)"></ExpandList>
       </li>
     </ul>
@@ -30,7 +31,9 @@ export default {
   },
   methods: {
     handleClick(item) {
-      this.$emit('select', item)
+      if (!item.isSelect) {
+        this.$emit('select', item)
+      }
     }
   },
 }

@@ -1,14 +1,14 @@
 <template>
 
   <div class="pager-container" v-if="pageNumber>1">
-    <a href="#" class="disable" :class="{disable:current===1}" @click="handleClick(1)">|&lt;&lt;</a>
-    <a href="#" class="disable" :class="{disable:current===1}" @click="handleClick(current-1)">&lt;&lt;</a>
-    <a href="#" :class="{active:item===current}" v-for="(item,i) in numbers" :key="i" @click="handleClick(item)">
+    <a href="#" class="disable" :class="{disable:current===1}" @click="handleClick(1,$event)">|&lt;&lt;</a>
+    <a href="#" class="disable" :class="{disable:current===1}" @click="handleClick(current-1,$event)">&lt;&lt;</a>
+    <a href="#" :class="{active:item===current}" v-for="(item,i) in numbers" :key="i" @click="handleClick(item,$event)">
       {{ item }}</a>
 
 
-    <a href="#" :class="{disable:current===pageNumber}" @click="handleClick(current+1)">&gt;&gt;</a>
-    <a href="#" :class="{disable:current===pageNumber}" @click="handleClick(pageNumber)">&gt;&gt;|</a>
+    <a href="#" :class="{disable:current===pageNumber}" @click="handleClick(current+1,$event)">&gt;&gt;</a>
+    <a href="#" :class="{disable:current===pageNumber}" @click="handleClick(pageNumber,$event)">&gt;&gt;|</a>
 
   </div>
 </template>
@@ -62,7 +62,8 @@ export default {
     }
   },
   methods: {
-    handleClick(index) {
+    handleClick(index, event) {
+      event.preventDefault()
       if (index < 1) {
         index = 1
       }

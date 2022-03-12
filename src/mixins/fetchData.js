@@ -1,7 +1,8 @@
 /**
  * 需要提供 fetchData方法用于获取远程数据
  */
-export default function (defaultData = null) {
+
+export default function fetchData(defaultData = null) {
     return {
         data() {
             return {

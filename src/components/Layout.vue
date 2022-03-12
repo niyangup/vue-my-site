@@ -24,16 +24,21 @@ export default {
 </script>
 
 <style scoped lang="less">
-
 .layout-container {
   width: 100%;
   height: 100%;
   display: flex;
 
-  div.main {
-    flex-grow: 1;
+  .left,
+  .right {
+    flex: 0 0 auto;
+    overflow: hidden;
+  }
+
+  .main {
+    flex: 1 1 auto;
+    overflow: hidden;
   }
 }
-
-
 </style>
+
