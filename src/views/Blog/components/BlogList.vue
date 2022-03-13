@@ -12,14 +12,20 @@
           </a>
         </div>
         <div class="main">
-          <a href="#">
+          <router-link :to="{name:'BlogDetail',params:{id:item.id}}">
             <h2>{{ item.title }}</h2>
-          </a>
+          </router-link>
           <div class="aside">
             <span>日期：{{ formatDate(item.createDate) }}</span>
             <span>浏览：{{ item.scanNumber }}</span>
             <span>评论{{ item.commentNumber }}</span>
-            <a href="/blog/cate/8" class="">{{ item.category.name }}</a>
+            <router-link :to="{
+              name:'CategoryBlog',
+              params:{
+                id:item.category.id
+              }
+            }" class="">{{ item.category.name }}
+            </router-link>
           </div>
           <div class="desc">
             {{ item.description }}

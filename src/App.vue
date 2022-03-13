@@ -35,7 +35,6 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background: pink;
 
   .aside {
     width: 250px;
@@ -45,7 +44,6 @@ export default {
   .main {
     width: 100%;
     height: 100%;
-    background: lightblue;
   }
 }
 </style>
