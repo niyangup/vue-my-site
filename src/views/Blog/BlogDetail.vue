@@ -6,11 +6,9 @@
           <div v-if="data">
             <blog-main :blog="data"></blog-main>
           </div>
-
+          <blog-comment></blog-comment>
         </div>
-        评论
       </template>
-
       <template v-slot:right>
         <div class="right-container" v-loading="isLoading">
           <blog-toc :toc="data.toc" v-if="data"></blog-toc>
@@ -26,10 +24,11 @@ import BlogMain from "@/views/Blog/components/BlogMain";
 import BlogToc from "@/views/Blog/components/BlogToc";
 import fetchData from "@/mixins/fetchData";
 import {getBlog} from "@/api/blog";
+import BlogComment from "@/views/Blog/components/BlogComment";
 
 export default {
   name: "BlogDetail",
-  components: {BlogToc, BlogMain, Layout},
+  components: {BlogComment, BlogToc, BlogMain, Layout},
   mixins: [fetchData(null)],
   methods: {
     fetchData() {
