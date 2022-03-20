@@ -2,7 +2,7 @@
   <div class="detail-container">
     <layout>
       <template v-slot:default>
-        <div class="main-container" v-loading="isLoading">
+        <div ref="mainContainer" class="main-container" v-loading="isLoading">
           <div v-if="data">
             <blog-main :blog="data"></blog-main>
           </div>
@@ -33,8 +33,17 @@ export default {
   methods: {
     fetchData() {
       return getBlog(this.$route.params.id)
-    }
+    },
+    handleScroll() {
+      this.$bus.$emit('mainScroll', this.$refs.mainContainer)
+    },
   },
+  mounted() {
+    this.$refs.mainContainer.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    this.$refs.mainContainer.removeEventListener('scroll', this.handleScroll)
+  }
 }
 </script>
 

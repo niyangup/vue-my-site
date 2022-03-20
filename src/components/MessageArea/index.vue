@@ -13,7 +13,6 @@
 <script>
 import DataForm from "./DataForm";
 import DataList from "./DataList";
-import EventBus from "@/eventBus";
 
 export default {
   name: 'MessageArea',
@@ -38,12 +37,6 @@ export default {
   components: {
     DataForm,
     DataList,
-  },
-  methods: {
-    hello() {
-      EventBus.$on('hello', () => {
-      })
-    }
   },
 };
 </script>

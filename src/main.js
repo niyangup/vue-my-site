@@ -12,6 +12,7 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 
 Vue.prototype.$showMessage = showMessage
+Vue.prototype.$bus = new Vue({})
 
 new Vue({
     router,

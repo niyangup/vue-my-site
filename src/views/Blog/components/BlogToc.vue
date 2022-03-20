@@ -1,7 +1,7 @@
 <template>
   <div class="blog-toc-container">
     <h2>文字分类</h2>
-    <expand-list :list="toc" @select="handleSelect"/>
+    <expand-list :list="toWithSelect" @select="handleSelect"/>
   </div>
 </template>
 
@@ -16,11 +16,58 @@ export default {
       required: true
     },
   },
+  data() {
+    return {
+      activeAnchor: '',
+    }
+  },
+  created() {
+    this.$bus.$on('mainScroll', this.setSelect)
+  },
   methods: {
     handleSelect(item) {
       location.hash = item.anchor
+    },
+    setSelect() {
+      const range = 200
+      for (const dom of this.dom) {
+        if (dom) {
+          if (dom.getBoundingClientRect().top < range) {
+            this.activeAnchor = dom.id
+          }
+        }
+      }
     }
   },
+  computed: {
+    toWithSelect() {
+      const getToc = (toc = []) => {
+        return toc.map(t => ({
+          ...t,
+          isSelect: t.anchor === this.activeAnchor,
+          children: getToc(t.children)
+        }))
+      }
+      return getToc(this.toc)
+    },
+    dom() {
+      const doms = []
+
+      function addToDoms(toc) {
+        for (const t of toc) {
+          doms.push(document.getElementById(t.anchor))
+          if (t.children && t.children.length > 0) {
+            addToDoms(t.children)
+          }
+        }
+      }
+
+      addToDoms(this.toc)
+
+      return doms
+    }
+  },
+
 }
 </script>
 
