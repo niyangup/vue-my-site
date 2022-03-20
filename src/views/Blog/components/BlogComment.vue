@@ -26,6 +26,12 @@ export default {
       limit: 10
     }
   },
+  created() {
+    this.$bus.$on('mainScroll', this.handleScroll)
+  },
+  destroyed() {
+    this.$bus.$off('mainScroll', this.handleScroll)
+  },
   methods: {
     fetchData() {
       return getComments(this.$route.params.id, this.page, this.limit)
@@ -38,6 +44,24 @@ export default {
       this.data.rows.unshift(resp)
       this.data.total++
       callback('评论成功')
+    },
+    async fetchMore() {
+      this.isLoading = true
+      this.page++
+      const resp = await this.fetchData()
+      this.data.total = resp.total
+      this.data.rows = this.data.rows.concat(resp.rows)
+      this.isLoading = false
+    },
+    async handleScroll(dom) {
+      if (this.isLoading) {
+        return
+      }
+      const range = 100
+      const dec = Math.abs(dom.clientHeight + dom.scrollTop - dom.scrollHeight)
+      if (dec <= range) {
+        await this.fetchMore()
+      }
     }
   },
 }

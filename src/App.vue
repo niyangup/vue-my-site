@@ -12,6 +12,7 @@
         <router-view></router-view>
       </div>
     </Layout>
+    <to-top></to-top>
   </div>
 </template>
 
@@ -20,10 +21,11 @@
 
 import Layout from "@/components/Layout";
 import SiteAside from "@/components/SiteAside/SiteAside";
+import ToTop from "@/components/ToTop";
 
 export default {
   name: 'App',
-  components: {SiteAside, Layout},
+  components: {ToTop, SiteAside, Layout},
 }
 </script>
 
