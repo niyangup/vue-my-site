@@ -5,7 +5,7 @@
         <div class="thumb" v-if="item.thumb">
           <a href="#">
             <img
-                :src="item.thumb"
+                v-lazy="item.thumb"
                 :alt="item.title"
                 :title="item.title"
             />
@@ -58,9 +58,18 @@ export default {
   data() {
     return {}
   },
+  mounted() {
+    this.$refs.container.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    this.$refs.container.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
     fetchData() {
       return getBlogs(this.routeInfo.page, this.routeInfo.limit, this.routeInfo.id)
+    },
+    handleScroll() {
+      this.$bus.$emit('mainScroll', this.$refs.container)
     },
     formatDate,
     handlePageChange(index) {
